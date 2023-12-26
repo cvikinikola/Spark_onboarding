@@ -13,12 +13,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from perform_test import setup_driver, perform_test,  about_your_page
 from config import street_address, city, state, phone_number, email, new_user_email
 
-def test_same_email_validation():
+def test_new_user_validation():
     driver = setup_driver()
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, privacy_policy_link, next_button_new, terms_link, privacy_link = about_your_page(driver)
 
-    # same email or existing email bug no validation
     email_elem.send_keys(new_user_email)
+    time.sleep(6)
     phone_number_elem.send_keys(phone_number)
     street_address_elem.send_keys(street_address)
     city_elem.send_keys(city)

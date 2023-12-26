@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import random
 
 first_name = 'Raisin'
 first_name_space = 'Raisin '
@@ -53,6 +54,5 @@ email = 'nikolaradovic1985+testdelete2512231@gmail.com'
 # new user email
 today = datetime.now().date()
 formatted_day = today.strftime('%d%m%y')
-counter = 20
-counter += 1
-new_user_email = f'nikolaradovic1985+testdelete({formatted_day}){counter}@gmail.com'
+counter = random.randint(21, 100)
+new_user_email = f'nikolaradovic1985+testdelete{formatted_day}{counter}@gmail.com'
