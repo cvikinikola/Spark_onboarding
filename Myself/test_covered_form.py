@@ -4,22 +4,22 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
-from perform_test import setup_driver, perform_test
+from perform_test import setup_driver, myself_flow
 from config import (first_name, first_name_space, first_name_second_user, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id, employee_id_space, employee_id_second_user, date_of_birth, date_of_birth_failed, date_of_birth_second_eser, date_of_birth_second_eser_failed, date_of_birth_not_eligible)
 
 
 def test_text_match_required_all_fields():
     driver = setup_driver()
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = perform_test(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
 
     expected_title = "First, let’s confirm if you're covered"
-    title_text = driver.find_element(By.CSS_SELECTOR, '#root > div > div.sc-aXZVg.OnboardingPagestyles__PageContentContainer-sc-7dyz4y-1.fcpFyo.ruVSJ > div > form > div:nth-child(1)')
+    title_text = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-eBMEME fcpFyo dVszMr" and contains(text(), "First, let’s confirm")]')
     assert title_text.text == expected_title
     expected_p_text = 'Check if Spark Direct is covered by your insurance or employer.'
     p_text = driver.find_element(By.CLASS_NAME, 'sc-aXZVg.sc-dCFHLb.fcpFyo.ctYaUb')
     assert p_text.text == expected_p_text
     expected_form_title = 'Your info'
-    form_title = driver.find_element(By.CSS_SELECTOR, '#root > div > div.sc-aXZVg.OnboardingPagestyles__PageContentContainer-sc-7dyz4y-1.fcpFyo.ruVSJ > div > form > div:nth-child(3)')
+    form_title = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-eBMEME fcpFyo dVszMr" and contains(text(), "Your info")]')
     assert form_title.text == expected_form_title
     expected_privacy_policy_text = 'Your privacy is important to us. Read more in our Privacy Policy.'
     privacy_policy_text = driver.find_element(By.CLASS_NAME, 'sc-gEvEer.clvpoc')
@@ -50,7 +50,7 @@ def test_text_match_required_all_fields():
 
 def test_required_fields():
     driver = setup_driver()
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = perform_test(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
 
     # first name empty
     first_name_elem.send_keys('')
@@ -104,7 +104,7 @@ def test_required_fields():
 
 def test_date_of_birth_field_validation():
     driver = setup_driver()
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = perform_test(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
 
     first_name_elem.send_keys(':)')
     last_name_elem.send_keys(':)')
@@ -117,7 +117,7 @@ def test_date_of_birth_field_validation():
     day_under_13 = today - relativedelta(years=13, days=-1)
     formatted_day_under_13 = day_under_13.strftime('%m/%d/%Y')
     date_of_birth_elem.send_keys(formatted_day_under_13)
-    date_of_birth_error_under18 = driver.find_element(By.CSS_SELECTOR, '#coverageFormDOB-helper-text')
+    date_of_birth_error_under18 = driver.find_element(By.ID, 'coverageFormDOB-helper-text')
     expected_date_of_birth_under18 = 'Spark Direct is not intended for users under the age of 13. If your dependent is under the age of 13, they are not eligible to use Spark Direct.'
     assert date_of_birth_error_under18.text == expected_date_of_birth_under18
     assert check_coverage_button_elem.is_enabled()
@@ -172,7 +172,7 @@ def test_date_of_birth_field_validation():
 
 def test_zip_code_field_validation():
     driver = setup_driver()
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = perform_test(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
 
     expected_zip_code_error = 'Please enter a zip code'
     first_name_elem.send_keys(':)')
@@ -219,7 +219,7 @@ def test_zip_code_field_validation():
 
 def test_privacy_policy_newtab():
     driver = setup_driver()
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem= perform_test(driver)
+    myself_flow(driver)
 
     # need to update test
     # link opens in the same tab

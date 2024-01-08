@@ -1,5 +1,5 @@
 
-from perform_test import setup_driver, perform_test,  covered_page
+from perform_test import setup_driver, myself_flow,  covered_page
 
 
 def test_covered_page_match():

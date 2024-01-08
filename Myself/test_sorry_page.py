@@ -1,5 +1,5 @@
 import time
-from perform_test import setup_driver, perform_test,  sorry_page
+from perform_test import setup_driver, myself_flow,  sorry_page
 
 
 def test_sorry_page():
@@ -35,12 +35,12 @@ def test_sorry_page():
 
     suicide_link.click()
     time.sleep(2)
-    driver.switch_to.window(driver.window_handles[2])
+    driver.switch_to.window(driver.window_handles[1])
     suicide_link_url = 'https://988lifeline.org/chat/'
     assert suicide_link_url == driver.current_url
     driver.close()
 
-    driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[0])
     expected_crisis_text_title = "Crisis Text Line:"
     assert crisis_text_title.text == expected_crisis_text_title
 
@@ -55,12 +55,12 @@ def test_sorry_page():
 
     LGBTQ_link.click()
     time.sleep(2)
-    driver.switch_to.window(driver.window_handles[2])
+    driver.switch_to.window(driver.window_handles[1])
     LGBTQ_link_url = 'https://www.thetrevorproject.org/get-help/'
     assert LGBTQ_link_url == driver.current_url
     driver.close()
 
-    driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[0])
     # expected_poison_control_title = "Poison Control:"
     # assert poison_control_title.text == expected_poison_control_title
 
@@ -83,27 +83,27 @@ def test_sorry_page():
     expected_need_support_link = "Behavioral Health Treatment Services Locator:"
     assert need_support_link.text == expected_need_support_link
     need_support_link.click()
-    driver.switch_to.window(driver.window_handles[2])
+    driver.switch_to.window(driver.window_handles[1])
     time.sleep(1)
     need_support_link_url = 'https://findtreatment.gov/'
     assert need_support_link_url == driver.current_url
     driver.close()
 
-    driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[0])
     expected_need_support_link_2 = "National Association of Free and Charitable Clinics:"
     assert need_support_link_2.text == expected_need_support_link_2
     need_support_link_2.click()
-    driver.switch_to.window(driver.window_handles[2])
+    driver.switch_to.window(driver.window_handles[1])
     time.sleep(1)
     need_support_link_url_2 = 'https://nafcclinics.org/find-clinic/'
     assert need_support_link_url_2 == driver.current_url
     driver.close()
 
-    driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[0])
     expected_need_support_link_3 = "FindHelp:"
     assert need_support_link_3.text == expected_need_support_link_3
     need_support_link_3.click()
-    driver.switch_to.window(driver.window_handles[2])
+    driver.switch_to.window(driver.window_handles[1])
     time.sleep(1)
     need_support_link_url_3 = 'https://www.findhelp.org/'
     assert need_support_link_url_3 == driver.current_url

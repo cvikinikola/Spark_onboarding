@@ -48,8 +48,9 @@ zip_code_under18 = '20394'
 street_address = 'Миroвачка ÅÆØ'
 city = 'Belgrade'
 state = 'Alabama'
-phone_number = '+381652701213'
+phone_number = '+381652000000'
 email = 'nikolaradovic1985+testdelete2512231@gmail.com'
+existed_email = 'nikolaradovic1985+testdelete0101231@gmail.com'
 
 # new user email
 today = datetime.now().date()
