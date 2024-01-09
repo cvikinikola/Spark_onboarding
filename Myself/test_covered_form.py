@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from perform_test import myself_flow
 from config import (first_name, first_name_space, first_name_second_user, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id, employee_id_space, employee_id_second_user, date_of_birth, date_of_birth_failed, date_of_birth_second_eser, date_of_birth_second_eser_failed, date_of_birth_not_eligible)
-
+from conftest import driver
 
 def test_text_match_required_all_fields(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)

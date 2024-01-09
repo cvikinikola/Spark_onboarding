@@ -7,6 +7,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from perform_test import myself_flow,  caregiver_page
 from config import street_address, phone_number, email, existed_email, first_name, last_name
+from conftest import driver
+
 
 def test_about_caregiver_page_match_requires_all_fields(driver):
     privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)

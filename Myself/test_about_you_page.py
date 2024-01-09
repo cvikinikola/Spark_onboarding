@@ -6,9 +6,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from perform_test import  myself_flow,  about_your_page
-from config import street_address, city, state, phone_number, email, existed_email
-
+from perform_test import myself_flow,  about_your_page
+from config import street_address, city, state, phone_number, email
+from conftest import driver
 
 def test_about_your_page_match_requires_all_fields(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, privacy_policy_link, next_button_new, terms_link, privacy_link = about_your_page(driver)

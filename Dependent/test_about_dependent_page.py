@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from perform_test import myself_flow,  about_dependent_page
 from config import street_address, city, state, phone_number, email, existed_email
+from conftest import driver
 
 def test_about_dependent_page_match_requires_all_fields(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)

@@ -2,6 +2,7 @@ import time
 import pytest
 
 from perform_test import myself_flow,  dependent_sorry_page
+from conftest import driver
 
 def test_sorry_page(driver):
     we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4 = dependent_sorry_page(driver)

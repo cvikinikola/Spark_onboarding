@@ -9,6 +9,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 from config import (first_name, first_name_space, first_name_second_user, first_name_capital_letters, last_name_capital_letters, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id_small_letter, employee_id, employee_id_space, employee_id_second_user, date_of_birth, street_address, city, phone_number, email, new_user_email)
+from conftest import driver
+
 
 def first_page(driver):
     # First window
