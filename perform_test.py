@@ -1,21 +1,14 @@
 import time
-from selenium.webdriver import Chrome, ChromeOptions
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
+import pytest
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 from config import (first_name, first_name_space, first_name_second_user, first_name_capital_letters, last_name_capital_letters, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id_small_letter, employee_id, employee_id_space, employee_id_second_user, date_of_birth, street_address, city, phone_number, email, new_user_email)
-
-
-
-def setup_driver():
-    options = ChromeOptions()
-    options.add_argument("-incognito")
-    driver = Chrome(options=options)
-    return driver
 
 def first_page(driver):
     # First window
@@ -60,7 +53,6 @@ def dependent_flow(driver):
     force_eligibility_elem = checkbox_elements[1]
 
     return first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem
-
 
 def myself_flow(driver):
     radiobutton_myself, radiobutton_dependent, check_coverage_button = first_page(driver)
@@ -156,7 +148,6 @@ def sorry_page(driver):
 
     return we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4
 
-
 def dependent_sorry_page(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
     first_name_elem.send_keys(first_name_capital_letters)
@@ -194,7 +185,6 @@ def dependent_sorry_page(driver):
     need_support_p_4 = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Big Health is not responsible for any")]')))
 
     return we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4
-
 
 def about_your_page(driver):
     next_button_coverage, you_are_covered_page_title, you_are_covered_page_p, you_are_covered_page_what, you_are_covered_page_answer, you_are_covered_page_download, you_are_covered_page_start = covered_page(driver)
@@ -240,7 +230,7 @@ def about_dependent_page(driver):
 
     return email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new
 
-def coregiver_page(driver):
+def caregiver_page(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)
     email_elem.send_keys(new_user_email)
     phone_number_elem.send_keys(phone_number)

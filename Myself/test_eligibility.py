@@ -1,14 +1,14 @@
 import time
-from selenium import webdriver
+import pytest
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from perform_test import setup_driver, myself_flow
+from perform_test import myself_flow
 from config import (first_name, first_name_space, first_name_second_user, first_name_capital_letters, last_name_capital_letters, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id_small_letter, employee_id, employee_id_space, employee_id_second_user, date_of_birth, date_of_birth_failed, date_of_birth_second_eser, date_of_birth_second_eser_failed, date_of_birth_not_eligible,first_name_under18, last_name_under18, date_of_birth_under18, employee_id_under18, zip_code_under18, first_name_under13, last_name_under13, date_of_birth_under13, employee_id_under13, zip_code_under13)
 
-def test_not_eligible():
-    driver = setup_driver()
+def test_not_eligible(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
 
     # Need update test when implemented feature
@@ -150,8 +150,7 @@ def test_not_eligible():
     expected_you_are_covered_page_title = "You're covered!"
     assert you_are_covered_page_title.text == expected_you_are_covered_page_title
 
-def test_eligible():
-    driver = setup_driver()
+def test_eligible(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
     first_name_elem.send_keys(first_name_capital_letters)
     last_name_elem.send_keys(last_name_capital_letters)
@@ -164,8 +163,7 @@ def test_eligible():
     expected_you_are_covered_page_title = "You're covered!"
     assert you_are_covered_page_title.text == expected_you_are_covered_page_title
 
-def test_eligible_under_13():
-    driver = setup_driver()
+def test_eligible_under_13(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
     # Need update test when implemented feature
     first_name_elem.send_keys(first_name_under13)
@@ -175,9 +173,9 @@ def test_eligible_under_13():
     date_of_birth_elem.send_keys(date_of_birth_under13)
     check_coverage_button_elem.click()
     # need update error text under13
-    date_of_birth_error_under18 = driver.find_element(By.ID, 'coverageFormDOB-helper-text')
+    date_of_birth_error_under13 = driver.find_element(By.ID, 'coverageFormDOB-helper-text')
     expected_date_of_birth_error_under13 = 'Spark Direct is not intended for users under the age of 13. If your dependent is under the age of 13, they are not eligible to use Spark Direct.'
-    assert date_of_birth_error_under18.text == expected_date_of_birth_error_under13
+    assert date_of_birth_error_under13.text == expected_date_of_birth_error_under13
     wait = WebDriverWait(driver, 10)
     alert = wait.until(EC.alert_is_present())
     alert_text = alert.text
@@ -185,8 +183,7 @@ def test_eligible_under_13():
     assert alert_text == expected_alert_text
     alert.accept()
 
-def test_eligible_under_18():
-    driver = setup_driver()
+def test_eligible_under_18(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
     first_name_elem.send_keys(first_name_under18)
     last_name_elem.send_keys(last_name_under18)

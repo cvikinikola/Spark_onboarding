@@ -1,17 +1,15 @@
 import time
-from selenium.webdriver.common.keys import Keys
 import pytest
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-from perform_test import setup_driver, myself_flow,  coregiver_page
+from selenium.webdriver.common.keys import Keys
+from perform_test import myself_flow,  caregiver_page
 from config import street_address, phone_number, email, existed_email, first_name, last_name
 
-
-def test_about_caregiver_page_match_requires_all_fields():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_about_caregiver_page_match_requires_all_fields(driver):
+    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
     expected_title = 'Next, tell us about you'
     title_text_about = driver.find_element(By.CLASS_NAME, 'sc-aXZVg.sc-eBMEME.fcpFyo.dVszMr')
     assert title_text_about.text == expected_title
@@ -67,10 +65,8 @@ def test_about_caregiver_page_match_requires_all_fields():
         pytest.xfail('Text does not match, Dependent’s Info capital letters in Figma info small letter')
     assert form_title.text == expected_form_title
 
-
-def test_required_form_fields():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_required_form_fields(driver):
+    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
 
     # first name empty
     first_name_elem_caregiver.send_keys()
@@ -121,10 +117,8 @@ def test_required_form_fields():
     terms_privacy_elem.click()
     assert next_button_caregiver != next_button_caregiver.is_enabled()
 
-
-def test_email_field_validation():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_email_field_validation(driver):
+    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
 
     first_name_elem_caregiver.send_keys(first_name)
     last_name_elem_caregiver.send_keys(last_name)
@@ -186,10 +180,8 @@ def test_email_field_validation():
         assert email_elem_caregiver_error.text == expected_email_error
         assert next_button_caregiver != next_button_caregiver.is_enabled
 
-
-def test_phone_number_validation():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_phone_number_validation(driver):
+    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
 
     first_name_elem_caregiver.send_keys(first_name)
     last_name_elem_caregiver.send_keys(last_name)
@@ -227,9 +219,8 @@ def test_phone_number_validation():
         assert expected_phone_number_elem_caregiver.text == expected_phone_number_error
         assert next_button_caregiver != next_button_caregiver.is_enabled
 
-def test_privacy_policy_caregiver_new_tab():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_privacy_policy_caregiver_new_tab(driver):
+    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
 
     privacy_link.click()
     privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
@@ -244,9 +235,8 @@ def test_privacy_policy_caregiver_new_tab():
     assert terms_link_url == driver.current_url
     driver.close()
 
-def test_need_this_popup():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_need_this_popup(driver):
+    caregiver_page(driver)
 
     p_text_about = driver.find_element(By.CLASS_NAME, 'sc-gEvEer.anqoZ')
     p_text_about.click()
@@ -286,10 +276,8 @@ def test_need_this_popup():
     assert popup_second_p.text == expected_popup_second_p
     # assert popup_title.text == expected_popup_title
 
-
-def test_privacy_policy_newtab():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_privacy_policy_newtab(driver):
+    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
 
     # need to update test
     # link opens in the same tab

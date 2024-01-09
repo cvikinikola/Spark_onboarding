@@ -1,21 +1,13 @@
-import time
-
-from selenium.webdriver.common.keys import Keys
-import os
-import time
-from selenium import webdriver
-
 import pytest
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-from perform_test import setup_driver, myself_flow,  coregiver_page
+from perform_test import myself_flow,  caregiver_page
 from config import street_address, phone_number, email, existed_email, first_name, last_name
 
-def test_new_dependent_validation():
-    driver = setup_driver()
-    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = coregiver_page(driver)
+def test_new_dependent_validation(driver):
+    privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
 
     first_name_elem_caregiver.send_keys(first_name)
     last_name_elem_caregiver.send_keys(last_name)

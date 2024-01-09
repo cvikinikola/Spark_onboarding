@@ -1,19 +1,14 @@
 import time
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-
 import pytest
+
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-from perform_test import setup_driver, myself_flow,  about_dependent_page
+from perform_test import myself_flow,  about_dependent_page
 from config import street_address, city, state, phone_number, email, existed_email
 
-
-def test_about_dependent_page_match_requires_all_fields():
-    driver = setup_driver()
+def test_about_dependent_page_match_requires_all_fields(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)
     expected_title = "Tell us more about your dependent"
     title_text_about = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-eBMEME.fcpFyo.dVszMr')))
@@ -65,9 +60,7 @@ def test_about_dependent_page_match_requires_all_fields():
         pytest.xfail('Text does not match, Dependent’s Info capital letters in Figma info small letter')
     assert form_title.text == expected_form_title
 
-
-def test_required_form_fields():
-    driver = setup_driver()
+def test_required_form_fields(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)    # State empty
     email_elem.send_keys(email)
     phone_number_elem.send_keys(phone_number)
@@ -114,9 +107,7 @@ def test_required_form_fields():
     assert city_error.text == expected_city_error
     assert next_button_new != next_button_new.is_enabled()
 
-
-def test_email_field_validation():
-    driver = setup_driver()
+def test_email_field_validation(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)
     phone_number_elem.send_keys(phone_number)
     street_address_elem.send_keys(street_address)
@@ -176,9 +167,7 @@ def test_email_field_validation():
         assert email_error.text == expected_email_error
         assert next_button_new != next_button_new.is_enabled
 
-
-def test_phone_number_validation():
-    driver = setup_driver()
+def test_phone_number_validation(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)
 
     email_elem.send_keys(email)
@@ -216,8 +205,7 @@ def test_phone_number_validation():
         assert phone_number_error.text == expected_phone_number_error
         assert next_button_new != next_button_new.is_enabled
 
-def test_need_this_popup():
-    driver = setup_driver()
+def test_need_this_popup(driver):
     about_dependent_page(driver)
     p_text_about = driver.find_element(By.CLASS_NAME, 'sc-gEvEer.anqoZ')
     p_text_about.click()
@@ -257,8 +245,7 @@ def test_need_this_popup():
     assert popup_second_p.text == expected_popup_second_p
     # assert popup_title.text == expected_popup_title
 
-def test_same_email_validation():
-    driver = setup_driver()
+def test_same_email_validation(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)
     # same email or existing email bug no validation
     email_elem.send_keys(existed_email)
@@ -272,9 +259,8 @@ def test_same_email_validation():
     assert email_error.text == expected_email_error
     assert next_button_new != next_button_new.is_enabled()
 
-def test_privacy_policy_newtab():
-    driver = setup_driver()
-    email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, next_button_new = about_dependent_page(driver)
+def test_privacy_policy_new_tab(driver):
+    about_dependent_page(driver)
 
     # need to update test
     # link opens in the same tab

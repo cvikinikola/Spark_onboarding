@@ -1,9 +1,9 @@
+import pytest
 
-from perform_test import setup_driver, myself_flow,  covered_page_dependent
+from perform_test import myself_flow,  covered_page_dependent
 
 
-def test_covered_page_match():
-    driver = setup_driver()
+def test_covered_page_match(driver):
     next_button_coverage, you_are_covered_page_title, you_are_covered_page_p, you_are_covered_page_what, you_are_covered_page_answer, you_are_covered_page_download, you_are_covered_page_start = covered_page_dependent(driver)
     expected_you_are_covered_page_title = "Your dependent is covered!"
     assert you_are_covered_page_title.text == expected_you_are_covered_page_title

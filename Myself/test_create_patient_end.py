@@ -1,18 +1,14 @@
 import time
+import pytest
 
 from selenium.webdriver.common.keys import Keys
-from selenium import webdriver
-
-import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-from perform_test import setup_driver, myself_flow,  about_your_page
+from perform_test import myself_flow,  about_your_page
 from config import street_address, city, state, phone_number, email, new_user_email
 
-def test_new_user_validation():
-    driver = setup_driver()
+def test_new_user_validation(driver):
     email_elem, phone_number_elem, street_address_elem, city_elem, state_elem, email_elem_placeholder, phone_number_placeholder, street_address_placeholder, city_placeholder, state_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, privacy_policy_link, next_button_new, terms_link, privacy_link = about_your_page(driver)
 
     email_elem.send_keys(new_user_email)

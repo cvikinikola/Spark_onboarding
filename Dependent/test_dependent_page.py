@@ -1,15 +1,15 @@
 import time
-from selenium import webdriver
+import pytest
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
-from perform_test import setup_driver, dependent_flow
+from perform_test import dependent_flow
 from config import (first_name, first_name_space, first_name_second_user, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id, employee_id_space, employee_id_second_user, date_of_birth, date_of_birth_failed, date_of_birth_second_eser, date_of_birth_second_eser_failed, date_of_birth_not_eligible)
 
 
-def test_text_match_required_all_fields():
-    driver = setup_driver()
+def test_text_match_required_all_fields(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
 
     expected_title = "First, let’s confirm if your dependent is covered"
@@ -59,8 +59,7 @@ def test_text_match_required_all_fields():
     assert date_of_birth_error.text == expected_date_of_birth_error
     assert check_coverage_button_elem != check_coverage_button_elem.is_enabled()
 
-def test_required_fields():
-    driver = setup_driver()
+def test_required_fields(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
 
     # first name empty
@@ -113,8 +112,7 @@ def test_required_fields():
     assert check_coverage_button_elem != check_coverage_button_elem.is_enabled()
 
 
-def test_date_of_birth_field_validation():
-    driver = setup_driver()
+def test_date_of_birth_field_validation(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
 
     first_name_elem.send_keys(':)')
@@ -179,8 +177,7 @@ def test_date_of_birth_field_validation():
         date_of_birth_elem.send_keys(date_valid)
         assert check_coverage_button_elem.is_enabled()
 
-def test_zip_code_field_validation():
-    driver = setup_driver()
+def test_zip_code_field_validation(driver):
     first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
 
     expected_zip_code_error = 'Please enter a zip code'
@@ -226,8 +223,7 @@ def test_zip_code_field_validation():
         zip_code_elem.send_keys(data_valid)
         assert check_coverage_button_elem.is_enabled()
 
-def test_privacy_policy_newtab():
-    driver = setup_driver()
+def test_privacy_policy_new_tab(driver):
     dependent_flow(driver)
 
     # need to update test
