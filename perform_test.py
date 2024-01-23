@@ -8,7 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
-from config import (first_name, first_name_space, first_name_second_user, first_name_capital_letters, last_name_capital_letters, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id_small_letter, employee_id, employee_id_space, employee_id_second_user, date_of_birth, street_address, city, phone_number, email, new_user_email)
+from config import (first_name, first_name_space, first_name_second_user, first_name_capital_letters, last_name_capital_letters, last_name, last_name_space, last_name_second_user, zip_code, zip_code_space, zip_code_invalid, employee_id_small_letter, employee_id, employee_id_space, employee_id_second_user, date_of_birth, street_address, city, phone_number, email, new_user_email, date_of_birth_second_eser)
 from conftest import driver
 
 
@@ -117,8 +117,7 @@ def sorry_page(driver):
     last_name_elem.send_keys(last_name_capital_letters)
     zip_code_elem.send_keys(zip_code)
     employee_id_elem.send_keys(employee_id_small_letter)
-    date_of_birth_elem.send_keys(date_of_birth)
-    force_eligibility_elem.click()
+    date_of_birth_elem.send_keys(date_of_birth_second_eser)
     check_coverage_button_elem.click()
     time.sleep(2)
     we_are_sorry_page_title = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-esYiGF.fcpFyo.HOcMb')))
@@ -156,8 +155,7 @@ def dependent_sorry_page(driver):
     last_name_elem.send_keys(last_name_capital_letters)
     zip_code_elem.send_keys(zip_code)
     employee_id_elem.send_keys(employee_id_small_letter)
-    date_of_birth_elem.send_keys(date_of_birth)
-    force_eligibility_elem.click()
+    date_of_birth_elem.send_keys(date_of_birth_second_eser)
     check_coverage_button_elem.click()
     time.sleep(2)
     we_are_sorry_page_title = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-esYiGF.fcpFyo.HOcMb')))
