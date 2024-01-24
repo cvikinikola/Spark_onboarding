@@ -1,7 +1,7 @@
 import pytest
 
 from perform_test import myself_flow,  covered_page_dependent
-
+from conftest import driver
 
 def test_covered_page_match(driver):
     next_button_coverage, you_are_covered_page_title, you_are_covered_page_p, you_are_covered_page_what, you_are_covered_page_answer, you_are_covered_page_download, you_are_covered_page_start = covered_page_dependent(driver)
