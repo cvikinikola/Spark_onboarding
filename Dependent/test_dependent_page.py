@@ -229,6 +229,6 @@ def test_privacy_policy_new_tab(driver):
     # link opens in the same tab
     privacy_policy = driver.find_element(By.CLASS_NAME, 'sc-tagGq.ivXcxM')
     privacy_policy.click()
-    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
+    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy'
     driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url

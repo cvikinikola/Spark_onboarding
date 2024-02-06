@@ -233,7 +233,7 @@ def test_privacy_policy_new_tab(driver):
 
     privacy_link.click()
     time.sleep(1)
-    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
+    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy'
     driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url
     driver.close()
@@ -241,7 +241,7 @@ def test_privacy_policy_new_tab(driver):
     driver.switch_to.window(driver.window_handles[0])
     terms_link.click()
     time.sleep(1)
-    terms_link_url = 'https://www.bighealth.com/spark-direct-terms-and-conditions/'
+    terms_link_url = 'https://www.bighealth.com/spark-direct-terms-and-conditions'
     driver.switch_to.window(driver.window_handles[1])
     assert terms_link_url == driver.current_url
 
@@ -310,6 +310,6 @@ def test_privacy_policy_newtab(driver):
     # need to update test
     # link opens in the same tab
     privacy_policy_link.click()
-    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
+    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy'
     driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url
