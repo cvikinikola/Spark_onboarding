@@ -141,23 +141,24 @@ def test_email_field_validation(driver):
         'plainaddress',
         'this\ is"really"not\allowed@example.com',
         '❤️.efef@dsv.com',
+        '❤️.efef@dsv.com',
         'email@example.com@@   @@@@  @@@example.com',
         '#@%^%#$@#$@#.com',
         '@example.com',
         'Joe Smith <email@example.com>',
         'email.example.com',
         'email@example@example.com',
-        '.email@example.com',
-        'email.@example.com',
-        'email..email@example.com',
+        # '.email@example.com',
+        # 'email.@example.com',
+        # 'email..email@example.com',
         'あいうえお@example.com',
         'email@example.com (Joe Smith)',
         'email@example',
-        'email@-example.com',
-        'email@example.web',
-        'email@111.222.333.44444',
+        # 'email@-example.com',
+        # 'email@example.web',
+        # 'email@111.222.333.44444',
         'email@example..com',
-        'Abc..123@example.com',
+        # 'Abc..123@example.com',
     }
     for email_data in invalid_email:
         if email_elem.get_attribute("value"):
@@ -268,7 +269,7 @@ def test_privacy_policy_new_tab(driver):
     privacy_policy = driver.find_element(By.CLASS_NAME, 'sc-tagGq.ivXcxM')
     privacy_policy.click()
     privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
-    # driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url
 
 

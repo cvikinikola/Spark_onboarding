@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from perform_test import myself_flow,  about_your_page
-from config import street_address, city, state, phone_number, email
+from config import street_address, city, state, phone_number, email, existed_email
 from conftest import driver
 
 def test_about_your_page_match_requires_all_fields(driver):
@@ -311,5 +311,5 @@ def test_privacy_policy_newtab(driver):
     # link opens in the same tab
     privacy_policy_link.click()
     privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
-    # driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url

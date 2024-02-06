@@ -17,10 +17,10 @@ def first_page(driver):
     driver.get('https://portal-lab.limbix.com/onboarding/testsparkfilebasedorg')
     driver.maximize_window()
     action_chains = ActionChains(driver)
-    environment_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-llJcti.jNNNqK')))
+    environment_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-jsJBEP.gsixxv')))
     action_chains.double_click(environment_button).perform()
-    environment_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-llJcti.jNNNqK')))
-    action_chains.double_click(environment_button).perform()
+    # environment_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-llJcti.jNNNqK')))
+    # action_chains.double_click(environment_button).perform()
     # Second window
     driver.execute_script("window.open('', '_blank');")
     driver.switch_to.window(driver.window_handles[1])
@@ -51,10 +51,10 @@ def dependent_flow(driver):
     date_of_birth_label = driver.find_element(By.ID, 'coverageFormDOB-label')
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[@disabled][contains(@class, 'CTAButtonstyles__Button')]")
     checkbox_elements = driver.find_elements(By.CLASS_NAME, 'jss8.MuiSwitch-input')
-    override_eligibility_elem = checkbox_elements[0]
-    force_eligibility_elem = checkbox_elements[1]
+    # override_eligibility_elem = checkbox_elements[0]
+    # force_eligibility_elem = checkbox_elements[1]
 
-    return first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem
+    return first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem  # force_eligibility_elem, override_eligibility_elem
 
 def myself_flow(driver):
     radiobutton_myself, radiobutton_dependent, check_coverage_button = first_page(driver)
@@ -68,13 +68,13 @@ def myself_flow(driver):
     date_of_birth_elem = driver.find_element(By.ID, 'coverageFormDOB')
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[@disabled][contains(@class, 'CTAButtonstyles__Button')]")
     checkbox_elements = driver.find_elements(By.CLASS_NAME, 'jss8.MuiSwitch-input')
-    override_eligibility_elem = checkbox_elements[0]
-    force_eligibility_elem = checkbox_elements[1]
+    # override_eligibility_elem = checkbox_elements[0]
+    # force_eligibility_elem = checkbox_elements[1]
 
-    return first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem
+    return first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem  # force_eligibility_elem, override_eligibility_elem
 
 def covered_page(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem = myself_flow(driver)
     first_name_elem.send_keys(first_name_capital_letters)
     last_name_elem.send_keys(last_name_capital_letters)
     zip_code_elem.send_keys(zip_code)
@@ -93,7 +93,7 @@ def covered_page(driver):
     return next_button_coverage, you_are_covered_page_title, you_are_covered_page_p, you_are_covered_page_what, you_are_covered_page_answer, you_are_covered_page_download, you_are_covered_page_start
 
 def covered_page_dependent(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
     first_name_elem.send_keys(first_name_capital_letters)
     last_name_elem.send_keys(last_name_capital_letters)
     zip_code_elem.send_keys(zip_code)
@@ -112,7 +112,7 @@ def covered_page_dependent(driver):
     return next_button_coverage, you_are_covered_page_title, you_are_covered_page_p, you_are_covered_page_what, you_are_covered_page_answer, you_are_covered_page_download, you_are_covered_page_start
 
 def sorry_page(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem,force_eligibility_elem, override_eligibility_elem = myself_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, check_coverage_button_elem = myself_flow(driver)
     first_name_elem.send_keys(first_name_capital_letters)
     last_name_elem.send_keys(last_name_capital_letters)
     zip_code_elem.send_keys(zip_code)
@@ -129,6 +129,7 @@ def sorry_page(driver):
     experiencing_third_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "If you are not in immediate danger")]')
     suicide_title = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-fjvvzt fcpFyo kMrRzy" and contains(text(), "988 Suicide and Crisis Lifeline")]')
     suicide_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Call 988")]')
+    suicide_second_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "For deaf or hard of hearing ASL users")]')
     suicide_link = driver.find_element(By.CSS_SELECTOR, '[href^="https://988lifeline.org/chat/"]')
     crisis_text_title = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-fjvvzt fcpFyo kMrRzy" and contains(text(), "Crisis Text Line")]')
     crisis_text_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Text HOME to 741741")]')
@@ -147,10 +148,10 @@ def sorry_page(driver):
     need_support_link_3 = driver.find_element(By.CSS_SELECTOR, '[href^="https://www.findhelp.org/"]')
     need_support_p_4 = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Big Health is not responsible for any")]')
 
-    return we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4
+    return we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4, suicide_second_p
 
 def dependent_sorry_page(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
     first_name_elem.send_keys(first_name_capital_letters)
     last_name_elem.send_keys(last_name_capital_letters)
     zip_code_elem.send_keys(zip_code)
@@ -167,6 +168,7 @@ def dependent_sorry_page(driver):
     experiencing_third_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "If you are not in immediate danger")]')
     suicide_title = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-fjvvzt fcpFyo kMrRzy" and contains(text(), "988 Suicide and Crisis Lifeline")]')
     suicide_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Call 988")]')
+    suicide_second_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "For deaf or hard of hearing ASL users")]')
     suicide_link = driver.find_element(By.CSS_SELECTOR, '[href^="https://988lifeline.org/chat/"]')
     crisis_text_title = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-fjvvzt fcpFyo kMrRzy" and contains(text(), "Crisis Text Line")]')
     crisis_text_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Text HOME to 741741")]')
@@ -184,7 +186,7 @@ def dependent_sorry_page(driver):
     need_support_link_3 = driver.find_element(By.CSS_SELECTOR, '[href^="https://www.findhelp.org/"]')
     need_support_p_4 = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Big Health is not responsible for any")]')))
 
-    return we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4
+    return we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4, suicide_second_p
 
 def about_your_page(driver):
     next_button_coverage, you_are_covered_page_title, you_are_covered_page_p, you_are_covered_page_what, you_are_covered_page_answer, you_are_covered_page_download, you_are_covered_page_start = covered_page(driver)

@@ -10,7 +10,7 @@ from config import (first_name, first_name_space, first_name_second_user, last_n
 from conftest import driver
 
 def test_text_match_required_all_fields(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
 
     expected_title = "First, let’s confirm if your dependent is covered"
     title_text = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-eBMEME fcpFyo dVszMr" and contains(text(), "First, let’s confirm")]')
@@ -60,7 +60,7 @@ def test_text_match_required_all_fields(driver):
     assert check_coverage_button_elem != check_coverage_button_elem.is_enabled()
 
 def test_required_fields(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
 
     # first name empty
     first_name_elem.send_keys('')
@@ -113,7 +113,7 @@ def test_required_fields(driver):
 
 
 def test_date_of_birth_field_validation(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
 
     first_name_elem.send_keys(':)')
     last_name_elem.send_keys(':)')
@@ -178,7 +178,7 @@ def test_date_of_birth_field_validation(driver):
         assert check_coverage_button_elem.is_enabled()
 
 def test_zip_code_field_validation(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
 
     expected_zip_code_error = 'Please enter a zip code'
     first_name_elem.send_keys(':)')
@@ -226,10 +226,9 @@ def test_zip_code_field_validation(driver):
 def test_privacy_policy_new_tab(driver):
     dependent_flow(driver)
 
-    # need to update test
     # link opens in the same tab
     privacy_policy = driver.find_element(By.CLASS_NAME, 'sc-tagGq.ivXcxM')
     privacy_policy.click()
     privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
-    # driver.switch_to.window(driver.window_handles[1])
+    driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url

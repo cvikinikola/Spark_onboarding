@@ -10,7 +10,7 @@ from config import (first_name, first_name_space, first_name_second_user, first_
 from conftest import driver
 
 def test_dependent_not_eligible(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
 
     # Need update test when implemented feature
     first_name_elem.send_keys(first_name_space)
@@ -31,7 +31,6 @@ def test_dependent_not_eligible(driver):
     # assert alert_text == expected_alert_text
     # alert.accept()
 
-    # need to update date is +1
     # Last name + space
     driver.set_window_size(800, 800)
     back_arrow_elem = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '#root > div > div.sc-aXZVg.sc-gmPhUn.fcpFyo.eDRZGN > div > div.sc-aXZVg.sc-hRJfrW.fcpFyo.loHkfj > svg')))
@@ -50,7 +49,6 @@ def test_dependent_not_eligible(driver):
     assert we_are_sorry_page_title.text == expected_we_are_sorry_page_title
 
 
-    # need to update date is +1
     # employee ID + space
     back_arrow_elem.click()
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[contains(@class, 'CTAButtonstyles__Button')]")
@@ -66,7 +64,6 @@ def test_dependent_not_eligible(driver):
     we_are_sorry_page_title = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-esYiGF.fcpFyo.HOcMb')))
     assert we_are_sorry_page_title.text == expected_we_are_sorry_page_title
 
-    # need to update date is +1
     # non eligible date
     back_arrow_elem.click()
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[contains(@class, 'CTAButtonstyles__Button')]")
@@ -82,7 +79,6 @@ def test_dependent_not_eligible(driver):
     we_are_sorry_page_title = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-esYiGF.fcpFyo.HOcMb')))
     assert we_are_sorry_page_title.text == expected_we_are_sorry_page_title
 
-    # need to update date is +1
     # eligible date of second user
     back_arrow_elem.click()
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[contains(@class, 'CTAButtonstyles__Button')]")
@@ -95,7 +91,6 @@ def test_dependent_not_eligible(driver):
     we_are_sorry_page_title = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-esYiGF.fcpFyo.HOcMb')))
     assert we_are_sorry_page_title.text == expected_we_are_sorry_page_title
 
-    # need to update date is +1
     # eligible Employee ID of second user
     back_arrow_elem.click()
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[contains(@class, 'CTAButtonstyles__Button')]")
@@ -111,7 +106,6 @@ def test_dependent_not_eligible(driver):
     we_are_sorry_page_title = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-esYiGF.fcpFyo.HOcMb')))
     assert we_are_sorry_page_title.text == expected_we_are_sorry_page_title
 
-    # need to update date is +1
     # eligible First name of second user
     back_arrow_elem.click()
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[contains(@class, 'CTAButtonstyles__Button')]")
@@ -127,7 +121,6 @@ def test_dependent_not_eligible(driver):
     we_are_sorry_page_title = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-aXZVg.sc-esYiGF.fcpFyo.HOcMb')))
     assert we_are_sorry_page_title.text == expected_we_are_sorry_page_title
 
-    # need to update date is +1
     # eligible Last name of second user
     back_arrow_elem.click()
     check_coverage_button_elem = driver.find_element(By.XPATH, "//button[contains(@class, 'CTAButtonstyles__Button')]")
@@ -164,7 +157,7 @@ def test_dependent_not_eligible(driver):
     assert you_are_covered_page_title.text == expected_you_are_covered_page_title
 
 def test_dependent_eligible(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
     first_name_elem.send_keys(first_name_capital_letters)
     last_name_elem.send_keys(last_name_capital_letters)
     zip_code_elem.send_keys(zip_code)
@@ -177,7 +170,7 @@ def test_dependent_eligible(driver):
     assert you_are_covered_page_title.text == expected_you_are_covered_page_title
 
 def test_dependent_eligible_under_13(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
     # Need update test when implemented feature
     first_name_elem.send_keys(first_name_under13)
     last_name_elem.send_keys(last_name_under13)
@@ -196,7 +189,7 @@ def test_dependent_eligible_under_13(driver):
     alert.accept()
 
 def test_dependent_eligible_under_18(driver):
-    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem, force_eligibility_elem, override_eligibility_elem = dependent_flow(driver)
+    first_name_elem, last_name_elem, zip_code_elem, employee_id_elem, date_of_birth_elem, first_name_label, last_name_label, zip_code_label, employee_id_label, date_of_birth_label, check_coverage_button_elem = dependent_flow(driver)
     first_name_elem.send_keys(first_name_under18)
     last_name_elem.send_keys(last_name_under18)
     zip_code_elem.send_keys(zip_code_under18)
