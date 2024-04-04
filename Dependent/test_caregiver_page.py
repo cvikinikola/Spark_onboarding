@@ -225,14 +225,14 @@ def test_privacy_policy_caregiver_new_tab(driver):
     privacy_policy_link, privacy_link, terms_link, first_name_elem_caregiver, last_name_elem_caregiver, email_elem_caregiver, phone_number_elem_caregiver, first_name_elem_caregiver_placeholder, last_name_elem_caregiver_placeholder, email_elem_caregiver_placeholder, phone_number_elem_caregiver_placeholder, acknowledge_checkbox_elem, terms_privacy_elem, next_button_caregiver = caregiver_page(driver)
 
     privacy_link.click()
-    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy'
+    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
     driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url
     driver.close()
 
     driver.switch_to.window(driver.window_handles[0])
     terms_link.click()
-    terms_link_url = 'https://www.bighealth.com/spark-direct-terms-and-conditions'
+    terms_link_url = 'https://www.bighealth.com/spark-direct-terms-and-conditions/'
     driver.switch_to.window(driver.window_handles[1])
     assert terms_link_url == driver.current_url
     driver.close()
@@ -284,7 +284,7 @@ def test_privacy_policy_newtab(driver):
     # need to update test
     # link opens in the same tab
     privacy_policy_link.click()
-    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy'
+    privacy_link_url = 'https://www.bighealth.com/spark-direct-privacy-policy/'
     driver.switch_to.window(driver.window_handles[1])
     assert privacy_link_url == driver.current_url
 

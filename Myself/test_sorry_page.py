@@ -5,7 +5,7 @@ from perform_test import myself_flow,  sorry_page
 from conftest import driver
 
 def test_sorry_page(driver):
-    we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_p_4, need_support_link_3, suicide_second_p = sorry_page(driver)
+    we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4, suicide_second_p = sorry_page(driver)
 
     expected_we_are_sorry_page_title = "We’re sorry!"
     assert we_are_sorry_page_title.text == expected_we_are_sorry_page_title
@@ -81,7 +81,7 @@ def test_sorry_page(driver):
     assert need_support_p_2.text == expected_need_support_p_2
 
     #have o dot in app not in figma
-    expected_need_support_p_3 = """This site can connect you to low-cost social care providers to help you meet your mental health care needs.\nFilter by Health -> Mental Health Care"""
+    expected_need_support_p_3 = """This site can connect you to low-cost social care providers to help you meet your mental health care needs.\nFilter by Health -> Mental Health Care."""
     assert need_support_p_3.text == expected_need_support_p_3
 
     expected_need_support_link = "Behavioral Health Treatment Services Locator:"
@@ -113,5 +113,6 @@ def test_sorry_page(driver):
     assert need_support_link_url_3 == driver.current_url
     driver.close()
 
+    driver.switch_to.window(driver.window_handles[0])
     expected_need_support_p_4 = "Big Health is not responsible for any actions or inactions between you and any third-party service provider. You acknowledge and agree that Big Health is not responsible for and expressly disclaims all liability for the actions or inactions of any third-party service provider."
     assert need_support_p_4.text == expected_need_support_p_4

@@ -14,20 +14,20 @@ from conftest import driver
 
 def first_page(driver):
     # First window
-    driver.get('https://portal-lab.limbix.com/onboarding/testsparkfilebasedorg')
+    driver.get('https://portal.limbix.com/onboarding/testsparkfilebasedorg')
     driver.maximize_window()
     action_chains = ActionChains(driver)
-    environment_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-jsJBEP.gsixxv')))
-    action_chains.double_click(environment_button).perform()
+    # environment_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-jsJBEP.gsixxv')))
+    # action_chains.double_click(environment_button).perform()
     # environment_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'sc-llJcti.jNNNqK')))
     # action_chains.double_click(environment_button).perform()
     # Second window
-    driver.execute_script("window.open('', '_blank');")
-    driver.switch_to.window(driver.window_handles[1])
-    driver.get('https://portal-lab.limbix.com/onboarding/testsparkfilebasedorg')
-    driver.switch_to.window(driver.window_handles[0])
-    driver.close()
-    driver.switch_to.window(driver.window_handles[0])
+    # driver.execute_script("window.open('', '_blank');")
+    # driver.switch_to.window(driver.window_handles[1])
+    # driver.get('https://portal-lab.limbix.com/onboarding/testsparkfilebasedorg')
+    # driver.switch_to.window(driver.window_handles[0])
+    # driver.close()
+    # driver.switch_to.window(driver.window_handles[0])
     radiobutton_myself = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'enrollmentPersonpatient')))
     radiobutton_dependent = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'enrollmentPersoncaregiver')))
     check_coverage_button = driver.find_element(By.XPATH, "//button[@disabled][contains(@class, 'CTAButtonstyles__Button')]")
@@ -141,12 +141,12 @@ def sorry_page(driver):
 
     need_support_title = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-fXSgeo fcpFyo jdDRKE" and contains(text(), "If you need support,")]')
     need_support_p = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "This website can help")]')
-    need_support_link = driver.find_element(By.XPATH, '//div[@class="sc-fBWQRz jbQpcA" and contains(text(), "Behavioral Health Treatment")]')
+    need_support_link = driver.find_element(By.CSS_SELECTOR, '[href^="https://findtreatment.gov/"]')
     need_support_p_2 = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "NAFC can help")]')
-    need_support_link_2 = driver.find_element(By.XPATH, '//div[@class="sc-fBWQRz jbQpcA" and contains(text(), "National Association")]')
+    need_support_link_2 = driver.find_element(By.CSS_SELECTOR, '[href^="https://nafcclinics.org/find-clinic/"]')
     need_support_p_3 = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "This site can connect you to low-cost")]')
     need_support_link_3 = driver.find_element(By.CSS_SELECTOR, '[href^="https://www.findhelp.org/"]')
-    need_support_p_4 = driver.find_element(By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Big Health is not responsible for any")]')
+    need_support_p_4 = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="sc-aXZVg sc-bbSZdi fcpFyo ledPWQ" and contains(text(), "Big Health is not responsible for any")]')))
 
     return we_are_sorry_page_title, first_under_title, second_under_title, experiencing_title, experiencing_first_p, experiencing_second_p, experiencing_third_p, suicide_title, suicide_p, crisis_text_title, crisis_text_p, LGBTQ_title, LGBTQ_p, suicide_link, LGBTQ_link, poison_control_title, poison_control_p, need_support_title, need_support_p, need_support_link, need_support_p_2, need_support_link_2, need_support_p_3, need_support_link_3, need_support_p_4, suicide_second_p
 
